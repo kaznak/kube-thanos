@@ -3,6 +3,7 @@
 // you can pass an object structured like the default to overwrite default values.
 {
   local defaults = self,
+  clusterDomain: 'cluster.local',
   name: 'thanos-store',
   namespace: error 'must provide namespace',
   version: error 'must provide version',

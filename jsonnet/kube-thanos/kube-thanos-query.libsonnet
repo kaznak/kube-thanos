@@ -3,6 +3,7 @@
 // you can pass an object structured like the default to overwrite default values.
 local defaults = {
   local defaults = self,
+  clusterDomain: 'cluster.local',
   name: 'thanos-query',
   namespace: error 'must provide namespace',
   version: error 'must provide version',
@@ -10,7 +11,7 @@ local defaults = {
   imagePullPolicy: 'IfNotPresent',
   replicas: error 'must provide replicas',
   replicaLabels: error 'must provide replicaLabels',
-  stores: ['dnssrv+_grpc._tcp.thanos-store.%s.svc.cluster.local' % defaults.namespace],
+  stores: ['dnssrv+_grpc._tcp.thanos-store.%s.svc.%s' % [defaults.namespace, defaults.clusterDomain]],
   rules: [],  // TODO(bwplotka): This is deprecated, switch to endpoints while ready.
   externalPrefix: '',
   queryUrl: '',
